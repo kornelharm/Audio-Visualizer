@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Visualizer.gd" type="Script" id=1]
+
+[sub_resource type="AudioStreamMicrophone" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+BAR_COUNT = 100
+HEIGHT = 450
+MIN_VOLUME = 60.0
+SMOOTH = 7
+BASE_HEIGHT = 10
+ANIMATION_SPEED = 0.003
+STYLE = "Rainbow Breathing"
+SCALING = "Modified Decibel"
+FREQUENCY_BIAS = "Right Bias"
+MIRRORING = "Mirrored"
+DECAY_MODIFIER = 0.9
+DECAY_PERCENT = 0.85
+SCALED_VOLUME_MULTIPLIER = 0.25
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01
+autostart = true
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 1 )
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
