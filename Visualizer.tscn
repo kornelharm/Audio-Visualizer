@@ -11,10 +11,11 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-BAR_COUNT = 100
+BAR_COUNT = 149
+FREQ_MAX = 8000
 HEIGHT = 450
 MIN_VOLUME = 60.0
-SMOOTH = 7
+SMOOTH = 0.15
 BASE_HEIGHT = 10
 ANIMATION_SPEED = 0.003
 STYLE = "Rainbow Breathing"
@@ -23,7 +24,7 @@ FREQUENCY_BIAS = "Right Bias"
 MIRRORING = "Mirrored"
 DECAY_MODIFIER = 0.9
 DECAY_PERCENT = 0.85
-SCALED_VOLUME_MULTIPLIER = 0.25
+SCALED_VOLUME_MULTIPLIER = 0.2
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.01
