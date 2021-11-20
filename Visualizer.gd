@@ -153,7 +153,8 @@ func _draw():
 			var diff = current_volume - bars[i]
 			velocities[i] = diff		
 			
-			bars[i] += velocities[i] * max((diff/HEIGHT),SMOOTH)
+			#bars[i] += velocities[i] * max((diff/HEIGHT),SMOOTH)
+			bars[i] += velocities[i]
 			if(bars[i] < 0):
 				bars[i] = 0
 			
