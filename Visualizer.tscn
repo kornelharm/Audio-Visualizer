@@ -11,8 +11,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-BAR_COUNT = 149
-FREQ_MAX = 8000
+BAR_COUNT = 161
+FREQ_MAX = 6000
 HEIGHT = 450
 MIN_VOLUME = 60.0
 SMOOTH = 0.15
@@ -20,8 +20,9 @@ BASE_HEIGHT = 10
 ANIMATION_SPEED = 0.003
 STYLE = "Rainbow Breathing"
 SCALING = "Modified Decibel"
-FREQUENCY_BIAS = "Right Bias"
-MIRRORING = "Mirrored"
+FREQUENCY_BIAS = "Normal"
+MIRRORING = "Normal"
+EXP_MODIFIER = 1.05
 DECAY_MODIFIER = 0.9
 DECAY_PERCENT = 0.85
 SCALED_VOLUME_MULTIPLIER = 0.2

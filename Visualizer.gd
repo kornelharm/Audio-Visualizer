@@ -16,6 +16,7 @@ export var HEIGHT = 300
 export var MIN_VOLUME = 75.0
 export var SMOOTH = 0.5
 export var BASE_HEIGHT = 2
+export var SUBDIVISIONS = 4
 var BAR_COLOR:Color
 onready var column_width: float = WIDTH/BAR_COUNT
 export var ANIMATION_SPEED = 0.002
@@ -75,13 +76,18 @@ func get_bar_color(bar_number):
 	return barColor
 	
 func energy_of_bar(bar_number, min_freq, max_freq):
-	var magnitude = spectrum.get_magnitude_for_frequency_range(min_freq, max_freq).length()
-	var bar_volume = MIN_VOLUME
-	if(FREQUENCY_BIAS == "Right Bias"):
-				bar_volume = (bar_number*((MIN_VOLUME*SCALED_VOLUME_MULTIPLIER)/MIN_VOLUME))+MIN_VOLUME
-				
-	# Converts magnitude into a value between 0-1 to describe its volume
-	return clamp((bar_volume + linear2db(magnitude)) / bar_volume, 0, 1)
+	var final = 0
+	var interval = (max_freq - min_freq)/SUBDIVISIONS
+	for i in range (SUBDIVISIONS):	
+		var magnitude = spectrum.get_magnitude_for_frequency_range(min_freq+i*interval, min_freq+(i+1)*interval).length()
+		var bar_volume = MIN_VOLUME
+		if(FREQUENCY_BIAS == "Right Bias"):
+					bar_volume = (bar_number*((MIN_VOLUME*SCALED_VOLUME_MULTIPLIER)/MIN_VOLUME))+MIN_VOLUME
+					
+		# Converts magnitude into a value between 0-1 to describe its volume
+		final += clamp((bar_volume + linear2db(magnitude)) / bar_volume, 0, 1)
+	final /= SUBDIVISIONS
+	return final
 	
 func get_scaled_bar(bar_number):
 	var final_height = pow(bars[bar_number], EXP_MODIFIER)
